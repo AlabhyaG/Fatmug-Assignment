@@ -20,7 +20,16 @@ class AllVendorAPIView(APIView):
         Returns:
         - 200 OK: A list of vendors with vendor code and vendor name.
         """
-        vendors = VendorModel.objects.all()
+        try:
+            vendors = VendorModel.objects.all()
+        except VendorModel.DoesNotExist:
+            return Response(
+                {
+                    'error':'Vendor Not Found'
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+    
         serializer = VendorListSerializer(vendors, many=True)
         return Response(serializer.data)
 
@@ -66,7 +75,16 @@ class SpecificVendorAPIView(APIView):
         vendor name,vendor code, address, and contact_details.
         - 404 Not Found: The vendor does not exist.
         """
-        vendor = VendorModel.objects.get(vendor_code=pk)
+        try:
+            vendor = VendorModel.objects.get(vendor_code=pk)
+        except VendorModel.DoesNotExist:
+            return Response(
+                {
+                    'error':'Vendor Not Found'
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+    
         serializer = VendorSerializers(vendor, many=False)
         return Response(serializer.data)
 
@@ -158,6 +176,14 @@ class PerformanceVendorApiView(APIView):
         - Gives : On time delivery rate, Fulfillment rate, 
                   avg response time and quality avg
         """
-        performance_object = VendorModel.objects.get(vendor_code=pk)
+        try:
+            performance_object = VendorModel.objects.get(vendor_code=pk)
+        except VendorModel.DoesNotExist:
+            return Response(
+                {
+                    'error': 'Vendor not found'
+                }, 
+                status=status.HTTP_404_NOT_FOUND
+            )
         serializer = VendorPerformanceSerializer(performance_object, many=False)
-        return Response(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK)

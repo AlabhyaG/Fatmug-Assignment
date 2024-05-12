@@ -26,7 +26,7 @@ class UpdateVendorSerializer(serializers.ModelSerializer):
     """
     Serializer for updating a vendor, excluding the vendor_code.
     """
-    vendor_code = serializers.CharField(read_only=True)
+    # vendor_code = serializers.CharField(read_only=True)
 
     class Meta:
         model = VendorModel
@@ -34,8 +34,13 @@ class UpdateVendorSerializer(serializers.ModelSerializer):
             'name',
             'contact_details',
             'address',
-            'vendor_code'
+          
         ]
+        
+    def validate(self, data):
+        if not any(field in data for field in ['name', 'contact_details', 'address']):
+            raise serializers.ValidationError("At least one of 'name', 'contact_details', or 'address' must be provided.")
+        return data    
 
 class VendorListSerializer(serializers.ModelSerializer):
     """
