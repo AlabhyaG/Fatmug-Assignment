@@ -61,10 +61,14 @@ There are two test.py files for both apps that is Vendor App and Purchase Orders
 ### Step 1: Go to the project folder
 
 ### Step 2: Go to the vendor_management_system by
-''' cd vendor_management_system'''
+''' 
+cd vendor_management_system
+'''
 
 ### Step 3: In terminal type the command:
-''' python manage.py test'''
+''' 
+python manage.py test
+'''
 
 This will run both the test suites
 
