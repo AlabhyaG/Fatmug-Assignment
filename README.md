@@ -1,3 +1,7 @@
+# About the Project
+
+This is a backend where we have three models Vendor and Purchase Order and Historical Performance Model, the entries of these models are done through API's, whose details you can find in this document. Apart from CRUD operation, performance metric of vendor model is calculated when a suitable change happen in purchase model in real time. The Historical Performance Model stores the vendor performance metric whenever there is a change in performace metrics of vendor.
+
 # Project Setup Guide
 
 ## Introduction
