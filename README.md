@@ -96,7 +96,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Vendor List API
 
-### GET /vendors/
+### GET /api/vendors/
 
 **Description:** Retrieves a list of vendors.
 
@@ -105,7 +105,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 200 OK: A list of vendors with vendor code and vendor name.
 - 404 Not Found: Vendor Not Found
 
-### POST /vendors/
+### POST /api/vendors/
 
 **Description:** Creates a new vendor.
 
@@ -123,7 +123,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Specific Vendor API
 
-### GET /vendors/{pk}/
+### GET /api/vendors/{pk}/
 
 **Description:** Retrieves a specific vendor by its vendor code.
 
@@ -136,7 +136,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 200 OK: The vendor details including vendor name, vendor code, address, and contact details.
 - 404 Not Found: The vendor does not exist.
 
-### PUT /vendors/{pk}/
+### PUT /api/vendors/{pk}/
 
 **Description:** Updates a specific vendor by its vendor code.
 
@@ -155,7 +155,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 400 Bad Request: The request was malformed.
 - 404 Not Found: The vendor does not exist.
 
-### DELETE /vendors/{pk}/
+### DELETE /api/vendors/{pk}/
 
 **Description:** Deletes a specific vendor by its vendor code.
 
@@ -170,7 +170,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Performance Metrics API
 
-### GET /vendors/{pk}/performance/
+### GET /api/vendors/{pk}/performance/
 
 **Description:** Retrieves performance metrics of a specific vendor by its vendor code.
 
@@ -186,14 +186,6 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 The API returns appropriate HTTP status codes to indicate the result of the request. Refer to the HTTP status code documentation for more information on interpreting these responses.
 
-## Contact
-
-For any questions or issues, please contact the API administrator.
-
----
-
-This documentation is subject to change as the API evolves. Always refer to the latest version for the most accurate information.
-
 # Purchase Order Management API Documentation
 
 This document provides an overview of the Purchase Order Management API, detailing how to interact with purchase orders through various endpoints. The API is designed to facilitate the creation, retrieval, updating, and deletion of purchase orders, along with acknowledging purchase orders and calculating performance metrics.
@@ -208,7 +200,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Purchase Order List API
 
-### GET /purchase-orders/
+### GET /api/purchase-orders/
 
 **Description:** Retrieves a list of purchase orders. Optionally filters orders by vendor.
 
@@ -222,7 +214,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 400 Bad Request: The request was malformed.
 - 404 Not Found: Purchase order with the specified vendor does not exist.
 
-### POST /purchase-orders/
+### POST /api/purchase-orders/
 
 **Description:** Creates a new purchase order.
 
@@ -238,7 +230,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Specific Purchase Order API
 
-### GET /purchase-orders/{pk}/
+### GET /api/purchase-orders/{pk}/
 
 **Description:** Retrieves a specific purchase order by its PO number.
 
@@ -251,7 +243,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 200 OK: The purchase order details.
 - 404 Not Found: The purchase order does not exist.
 
-### PUT /purchase-orders/{pk}/
+### PUT /api/purchase-orders/{pk}/
 
 **Description:** Updates a specific purchase order by its PO number.
 
@@ -269,7 +261,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - 400 Bad Request: The request was malformed.
 - 405 Method Not Allowed: The order is not acknowledged yet.
 
-### DELETE /purchase-orders/{pk}/
+### DELETE /api/purchase-orders/{pk}/
 
 **Description:** Deletes a specific purchase order by its PO number.
 
@@ -284,7 +276,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ## Acknowledge Purchase Order API
 
-### POST /purchase-orders/{pk}/acknowledge/
+### POST /api/purchase-orders/{pk}/acknowledge/
 
 **Description:** Acknowledges a specific purchase order by its PO number.
 
