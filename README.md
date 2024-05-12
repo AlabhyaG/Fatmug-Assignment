@@ -101,7 +101,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 **Description:** Retrieves a list of vendors.
 
 **Returns:**
-
+ Give output as a list of Vendors and Vendor Code
 - 200 OK: A list of vendors with vendor code and vendor name.
 - 404 Not Found: Vendor Not Found
 
@@ -132,13 +132,13 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - `pk`: The vendor code of the vendor to retrieve.
 
 **Returns:**
-
+- give Vendor Name, Vendor Code, Address, and Contact Details as output
 - 200 OK: The vendor details including vendor name, vendor code, address, and contact details.
 - 404 Not Found: The vendor does not exist.
 
 ### PUT /api/vendors/{pk}/
 
-**Description:** Updates a specific vendor by its vendor code.
+**Description:** Updates a specific vendor by its vendor code. It only update Vendor Name, Vendor Contact Details, Vendor Address
 
 **Path Parameters:**
 
@@ -150,7 +150,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - `contact_info` (Optional): The new contact information of the vendor.
 
 **Returns:**
-
+=
 - 200 OK: The vendor was successfully updated.
 - 400 Bad Request: The request was malformed.
 - 404 Not Found: The vendor does not exist.
@@ -179,7 +179,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - `pk`: The vendor code of the vendor to fetch performance metrics for.
 
 **Returns:**
-
+- Gives On Time Delivery rate, Fulfillment Rate, Average Response Time, Average Quality rating as output
 - 200 OK: The performance metrics of the vendor including On time delivery rate, Fulfillment rate, avg response time, and quality avg.
 
 ## Error Handling
@@ -209,7 +209,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - `vendor` (Optional): The ID of the vendor whose purchase orders to retrieve.
 
 **Returns:**
-
+- A list of purchase orders with only purchase number, Vendor Code, and status of order
 - 200 OK: A list of purchase orders.
 - 400 Bad Request: The request was malformed.
 - 404 Not Found: Purchase order with the specified vendor does not exist.
@@ -219,7 +219,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 **Description:** Creates a new purchase order.
 
 **Request Body:**
-
+- Takes only purchse number, vendor code, items and quantity as input, and generate all other fields on its own
 - `vendor_id`: The ID of the vendor.
 - `order_details`: Details of the purchase order.
 
@@ -239,13 +239,13 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - `pk`: The PO number of the purchase order to retrieve.
 
 **Returns:**
-
+- Gives all fields of purchase model as output
 - 200 OK: The purchase order details.
 - 404 Not Found: The purchase order does not exist.
 
 ### PUT /api/purchase-orders/{pk}/
 
-**Description:** Updates a specific purchase order by its PO number.
+**Description:** Updates a specific purchase order by its PO number. Update Delivery Date and quality rating and status to completed. If status is already completed then only updates quality rating.
 
 **Path Parameters:**
 
@@ -278,7 +278,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 
 ### POST /api/purchase-orders/{pk}/acknowledge/
 
-**Description:** Acknowledges a specific purchase order by its PO number.
+**Description:** Acknowledges a specific purchase order by its PO number. Updates Acknowledgement Date to the date of request of acknowledgment
 
 **Path Parameters:**
 
@@ -295,6 +295,7 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 - **On-Time Delivery Rate:** Calculated when the order status changes to "completed".
 - **Fulfillment Rate:** Calculated every time there is an update to the purchase order.
 - **Quality Rating Average:** Updated every time there is an update to the purchase order.
+- **Avervge Response Time:** Calculate the Average of difference between order date and acknowledgment date of vendor
 
 ## Error Handling
 
