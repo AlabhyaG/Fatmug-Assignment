@@ -60,7 +60,9 @@ Once your dependencies are installed, you can start the Django development serve
 ### Step 1: Start the Django Development Server
 
 Run the following command to start the Django development server:
-```python manage.py runserver```
+```
+python manage.py runserver
+```
 
 By default, the server will start on port 8000. You can access your project by opening a web browser and navigating to `http://127.0.0.1:8000`.
 
