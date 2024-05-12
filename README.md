@@ -55,6 +55,19 @@ python manage.py runserver
 
 By default, the server will start on port 8000. You can access your project by opening a web browser and navigating to `http://127.0.0.1:8000`.
 
+## Running Test Suite
+
+There are two test.py files for both apps that is Vendor App and Purchase Orders App, to run those follow the following step:
+### Step 1: Go to the project folder
+
+### Step 2: Go to the vendor_management_system by
+''' cd vendor_management_system'''
+
+### Step 3: In terminal type the command:
+''' python manage.py test'''
+
+This will run both the test suites
+
 ## Next Steps
 
 - Explore the project's codebase.
