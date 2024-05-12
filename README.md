@@ -82,7 +82,118 @@ python manage.py test
 ```
 
 This will run both the test suites
-# Purchase Order Api Endpoint Usage Details:
+# Vendor Management API Documentation
+
+This document provides an overview of the Vendor Management API, detailing how to interact with vendors through various endpoints. The API is designed to facilitate the creation, retrieval, updating, and deletion of vendors, along with retrieving performance metrics for specific vendors.
+
+## Base URL
+
+All API requests should be directed to the base URL of your Django application.
+
+## Authentication
+
+All API endpoints require authentication. Use the `Authorization` header with a valid token to authenticate your requests.
+
+## Vendor List API
+
+### GET /vendors/
+
+**Description:** Retrieves a list of vendors.
+
+**Returns:**
+
+- 200 OK: A list of vendors with vendor code and vendor name.
+- 404 Not Found: Vendor Not Found
+
+### POST /vendors/
+
+**Description:** Creates a new vendor.
+
+**Request Body:**
+
+- `vendor_name`: The name of the vendor.
+- `contact_info`: Contact information of the vendor.
+- `address`: Address of the vendor
+- `vendor_code`: Vendor code of the vendor
+
+**Returns:**
+
+- 201 Created: The vendor was successfully created.
+- 400 Bad Request: The request was malformed.
+
+## Specific Vendor API
+
+### GET /vendors/{pk}/
+
+**Description:** Retrieves a specific vendor by its vendor code.
+
+**Path Parameters:**
+
+- `pk`: The vendor code of the vendor to retrieve.
+
+**Returns:**
+
+- 200 OK: The vendor details including vendor name, vendor code, address, and contact details.
+- 404 Not Found: The vendor does not exist.
+
+### PUT /vendors/{pk}/
+
+**Description:** Updates a specific vendor by its vendor code.
+
+**Path Parameters:**
+
+- `pk`: The vendor code of the vendor to update.
+
+**Request Body:**
+
+- `vendor_name` (Optional): The new name of the vendor.
+- `contact_info` (Optional): The new contact information of the vendor.
+
+**Returns:**
+
+- 200 OK: The vendor was successfully updated.
+- 400 Bad Request: The request was malformed.
+- 404 Not Found: The vendor does not exist.
+
+### DELETE /vendors/{pk}/
+
+**Description:** Deletes a specific vendor by its vendor code.
+
+**Path Parameters:**
+
+- `pk`: The vendor code of the vendor to delete.
+
+**Returns:**
+
+- 204 No Content: The vendor was successfully deleted.
+- 404 Not Found: The vendor does not exist.
+
+## Performance Metrics API
+
+### GET /vendors/{pk}/performance/
+
+**Description:** Retrieves performance metrics of a specific vendor by its vendor code.
+
+**Path Parameters:**
+
+- `pk`: The vendor code of the vendor to fetch performance metrics for.
+
+**Returns:**
+
+- 200 OK: The performance metrics of the vendor including On time delivery rate, Fulfillment rate, avg response time, and quality avg.
+
+## Error Handling
+
+The API returns appropriate HTTP status codes to indicate the result of the request. Refer to the HTTP status code documentation for more information on interpreting these responses.
+
+## Contact
+
+For any questions or issues, please contact the API administrator.
+
+---
+
+This documentation is subject to change as the API evolves. Always refer to the latest version for the most accurate information.
+
 # Purchase Order Management API Documentation
 
 This document provides an overview of the Purchase Order Management API, detailing how to interact with purchase orders through various endpoints. The API is designed to facilitate the creation, retrieval, updating, and deletion of purchase orders, along with acknowledging purchase orders and calculating performance metrics.
@@ -196,12 +307,6 @@ All API endpoints require authentication. Use the `Authorization` header with a 
 ## Error Handling
 
 The API returns appropriate HTTP status codes to indicate the result of the request. Refer to the HTTP status code documentation for more information on interpreting these responses.
-
-## Contact
-
-For any questions or issues, please contact the API administrator.
-
----
 
 This documentation is subject to change as the API evolves. Always refer to the latest version for the most accurate information.
 
