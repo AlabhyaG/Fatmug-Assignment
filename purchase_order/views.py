@@ -6,6 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from.models import PurchaseOrderModel
+from vendor.models import *
 from.serializers import *
 from.utils.performance_metric_function import *
 
@@ -31,13 +32,21 @@ class PurchaseOrderListAPIView(APIView):
         - List of purchase orders.
         """
 
-        vendor_id = request.query_params.get('vendor')
+        try:
+            vendor_id = request.query_params.get('vendor')
+        except PurchaseOrderModel.DoesNotExist:
+            return Response(
+                {
+                    'error':'Purchase order with this vendor does not exist'
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
         queryset = PurchaseOrderModel.objects.all()
 
         if vendor_id:
             queryset = queryset.filter(vendor=vendor_id)
         serializer = PurchaseOrderSerializer(queryset, many=True)
-        return Response(serializer.data)
+        return Response(serializer.data,status=status.HTTP_200_OK)
 
     def post(self, request):
 
@@ -54,7 +63,6 @@ class PurchaseOrderListAPIView(APIView):
         """
 
         serializer = PurchaseOrderCreateSerializer(data=request.data)
-
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

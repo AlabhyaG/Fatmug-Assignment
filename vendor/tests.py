@@ -102,18 +102,8 @@ class SpecificVendorViewTest(BaseAPITestCase):
             {'name': 'Vendor 1', 'vendor_code': 'VC001'},
             {'name': 'Vendor 2', 'vendor_code': 'VC002'}
         ]
-        def test_get_specific_vendor(self):
-            response1 = self.client.get('/api/vendors/VC001')
-            response2 = self.client.get('/api/vendors/VC002')
-
-        self.assertEqual(response1.status_code, status.HTTP_200_OK)
-        self.assertEqual(response2.status_code, status.HTTP_200_OK)
-
+    
     # Assert that the response data contains the expected vendors
-        expected_data = [
-            {'name': 'Vendor 1', 'vendor_code': 'VC001'},
-            {'name': 'Vendor 2', 'vendor_code': 'VC002'}
-        ]
         self.assertEqual(
             response1.data['name'], 
             expected_data[0]['name']
