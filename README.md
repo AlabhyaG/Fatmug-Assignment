@@ -11,22 +11,31 @@ Before you start, you'll need to set up a virtual environment to keep your proje
 ### Step 1: Install Virtualenv
 
 If you don't already have `virtualenv` installed, you can install it using pip:
-bash pip install virtualenv
+```
+pip install virtualenv
+```
 
 
 ### Step 2: Create a Virtual Environment
 
 Navigate to your project directory and create a new virtual environment. Replace `venv` with whatever you'd like to name your virtual environment:
 
-bash cd path/to/your/project virtualenv venv
+```
+cd path/to/your/project virtualenv venv
+```
 
 ### Step 3: Activate the Virtual Environment
 
 Activate the virtual environment. On Windows, run:
-bash .\venv\Scripts\activate
+```
+.\venv\Scripts\activate
+```
 
 On macOS and Linux, run:
-bash source venv/bin/activate
+bash 
+```
+source venv/bin/activate
+```
 
 Your terminal prompt should change to indicate that the virtual environment is active.
 
@@ -39,7 +48,7 @@ With your virtual environment activated, you can now install the project's depen
 
 Run the following command to install all dependencies listed in `requirements.txt`:
 
-bash pip install -r requirements.txt
+```pip install -r requirements.txt```
 
 
 This command reads the `requirements.txt` file and installs all the packages listed there.
@@ -51,7 +60,7 @@ Once your dependencies are installed, you can start the Django development serve
 ### Step 1: Start the Django Development Server
 
 Run the following command to start the Django development server:
-python manage.py runserver
+```python manage.py runserver```
 
 By default, the server will start on port 8000. You can access your project by opening a web browser and navigating to `http://127.0.0.1:8000`.
 
@@ -61,14 +70,14 @@ There are two test.py files for both apps that is Vendor App and Purchase Orders
 ### Step 1: Go to the project folder
 
 ### Step 2: Go to the vendor_management_system by
-''' 
+```
 cd vendor_management_system
-'''
+```
 
 ### Step 3: In terminal type the command:
-''' 
+``` 
 python manage.py test
-'''
+```
 
 This will run both the test suites
 
