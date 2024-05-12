@@ -65,8 +65,14 @@ class PurchaseOrderListAPIView(APIView):
         serializer = PurchaseOrderCreateSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.data, 
+                status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer.errors, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class PurchaseOrderSpecificAPIView(APIView):
@@ -88,7 +94,10 @@ class PurchaseOrderSpecificAPIView(APIView):
         """
 
         purchase_order = PurchaseOrderModel.objects.get(po_number=pk)
-        serializer = PurchaseOrderCreateSerializer(purchase_order, many=False)
+        serializer = PurchaseOrderCreateSerializer(
+            purchase_order, 
+            many=False
+        )
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -244,7 +253,11 @@ class AcknowledgePurchaseOrderApiView(APIView):
             )
         
         purchase_order.acknowledgment_date = timezone.localtime(utc)
-        purchase_order.save(update_fields=['acknowledgment_date'])
+        purchase_order.save(
+            update_fields=[
+                'acknowledgment_date'
+                ]
+        )
 
         calculate_avg_response_time(self, purchase_order)
 

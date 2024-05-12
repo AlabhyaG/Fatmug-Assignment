@@ -8,13 +8,20 @@ from .serializers import VendorListSerializer
 class BaseAPITestCase(APITestCase):
     def setUp(self):
         # Create a test user
-        self.user = User.objects.create_user(username='testuser', password='testpassword')
+        self.user = User.objects.create_user(
+            username='testuser', 
+            password='testpassword'
+        )
 
         # Generate JWT token for the test user
         self.access_token = AccessToken.for_user(self.user)
 
         # Authenticate the test client with the token
-        self.client.credentials(HTTP_AUTHORIZATION=f'Bearer {self.access_token}')
+        self.client.credentials(
+            HTTP_AUTHORIZATION=f'Bearer {
+                self.access_token
+                }'
+            )
 
         # Create sample vendor data
         self.vendor1 = VendorModel.objects.create(
@@ -83,7 +90,10 @@ class AllVendorAPIViewTest(BaseAPITestCase):
         response = self.client.post('/api/vendors/', new_vendor_data)
 
     # Assert that the status code is 400 (Bad Request)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(
+            response.status_code, 
+            status.HTTP_400_BAD_REQUEST
+        )
 
 
 class SpecificVendorViewTest(BaseAPITestCase):
@@ -134,8 +144,9 @@ class UpdateVendorTestCase(BaseAPITestCase):
 
         # Send a PUT request to update the vendor
         response = self.client.put(
-            f'/api/vendors/{self.vendor1.vendor_code}/', 
-            update_data
+            f'/api/vendors/{
+                self.vendor1.vendor_code
+            }/',update_data
         )
 
         # Assert that the status code is 200 (OK)
@@ -145,7 +156,9 @@ class UpdateVendorTestCase(BaseAPITestCase):
         )
 
         # Assert that the vendor was updated correctly
-        updated_vendor = VendorModel.objects.get(vendor_code=self.vendor1.vendor_code)
+        updated_vendor = VendorModel.objects.get(
+            vendor_code=self.vendor1.vendor_code
+        )
         self.assertEqual(
             updated_vendor.name, 
             update_data['name']
@@ -165,8 +178,14 @@ class UpdateVendorTestCase(BaseAPITestCase):
             'vendor_code':'12v'
         }
         # Send a PUT request with invalid data
-        updated_vendor = VendorModel.objects.get(vendor_code=self.vendor1.vendor_code)
-        response = self.client.put(f'/api/vendors/{self.vendor1.vendor_code}/', invalid_data)
+        updated_vendor = VendorModel.objects.get(
+            vendor_code=self.vendor1.vendor_code
+        )
+        response = self.client.put(
+            f'/api/vendors/{
+                self.vendor1.vendor_code
+                }/', invalid_data
+            )
         self.assertNotEqual(
             updated_vendor.vendor_code,invalid_data['vendor_code']
         )

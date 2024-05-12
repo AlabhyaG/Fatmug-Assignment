@@ -185,5 +185,11 @@ class PerformanceVendorApiView(APIView):
                 }, 
                 status=status.HTTP_404_NOT_FOUND
             )
-        serializer = VendorPerformanceSerializer(performance_object, many=False)
-        return Response(serializer.data,status=status.HTTP_200_OK)
+        serializer = VendorPerformanceSerializer(
+            performance_object,
+              many=False
+        )
+        return Response(
+            serializer.data,
+            status=status.HTTP_200_OK
+        )
